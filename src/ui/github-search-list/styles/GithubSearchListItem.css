@@ -1,0 +1,46 @@
+.item-github-search-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1rem;
+    min-width: 100px;
+    max-width: 100px;
+    border-radius: 6px;
+
+    background-color: #B9B4C7;
+    font-size: 0.8rem;
+    padding: 1rem 0.5rem;
+
+    position: relative;
+}
+
+.select-github-profile {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.github-user-informations {
+    font-weight: bold;
+    text-align: center;
+}
+
+.github-avatar {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.button-github-profile {
+    border-radius: 3px;
+    color: #18181b;
+    background-color: #3b82f6;
+    padding: 5px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out background-color;
+}
+
+.button-github-profile:hover {
+    background-color: #1d4ed8;
+    transition: 0.3s ease-in-out background-color;
+}
