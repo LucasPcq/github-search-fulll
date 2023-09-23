@@ -1,5 +1,9 @@
 import { Header } from "../../layouts/Header";
-import { GithubSearchListView } from "../github-search-list/GithubSearchListView";
+
+import GithubSearchPresenter from "../github-search/GithubSearchPresenter";
+import GithubUserListPresenter from "../github-user-list/GithubUserListPresenter";
+
+import GithubProvider from "../../providers/github/GithubUserProvider";
 
 import "./styles/App.css";
 
@@ -7,7 +11,10 @@ function App() {
   return (
     <>
       <Header />
-      <GithubSearchListView />
+      <GithubProvider>
+        <GithubSearchPresenter />
+        <GithubUserListPresenter />
+      </GithubProvider>
     </>
   );
 }
