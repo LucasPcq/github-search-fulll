@@ -6,6 +6,7 @@ import GithubUserListPresenter from "../github-user-list/GithubUserListPresenter
 import GithubProvider from "../../providers/github/GithubUserProvider";
 
 import "./styles/App.css";
+import GithubActionsToolbarPresenter from "../github-actions-toolbar/GithubActionsToolbarPresenter";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <GithubProvider>
         <GithubSearchPresenter />
+        <GithubActionsToolbarPresenter />
         <GithubUserListPresenter />
       </GithubProvider>
     </>

@@ -12,18 +12,11 @@ import { fetchHttpClient } from "../../shared/adapters/http";
 import { debounce } from "../../shared/utils";
 
 export type GithubSearchViewModel = {
-  messageElementsSelected: string;
-  atLeastOneElementSelected: boolean;
-  actions: {
-    onClickDeleteSelectedUsers: () => void;
-    onClickDuplicateSelectedUsers: () => void;
-    onClickToggleSelectAllUsers: () => void;
-    onUserLoginChange: (userLogin: string) => void;
-  };
+  onUserLoginChange: (userLogin: string) => void;
 };
 
 export const useGithubSearchViewModel = (): GithubSearchViewModel => {
-  const { state, dispatch } = useGithubContext();
+  const { dispatch } = useGithubContext();
 
   //TODO: Improve that
   const debouncedSearch = useRef(
@@ -46,44 +39,7 @@ export const useGithubSearchViewModel = (): GithubSearchViewModel => {
     [dispatch]
   );
 
-  const onClickDeleteSelectedUsers = () =>
-    dispatch({
-      type: GithubContextEventType.USERS_DELETED,
-      userIds: state.selectedUserIds,
-    });
-
-  const onClickDuplicateSelectedUsers = () =>
-    dispatch({
-      type: GithubContextEventType.USERS_DUPLICATED,
-      userIds: state.selectedUserIds,
-    });
-
-  const onClickToggleSelectAllUsers = () => {
-    if (state.selectedUserIds.length === 0) {
-      dispatch({ type: GithubContextEventType.ALL_USER_SELECTED });
-    } else {
-      dispatch({ type: GithubContextEventType.ALL_USER_DESELECTED });
-    }
-  };
-
-  const actions = {
-    onClickDeleteSelectedUsers,
-    onClickDuplicateSelectedUsers,
-    onClickToggleSelectAllUsers,
-    onUserLoginChange: searchGithubUsersByUserLogin,
-  };
-
-  if (state.selectedUserIds.length > 0) {
-    return {
-      messageElementsSelected: `${state.selectedUserIds.length} elements selected`,
-      atLeastOneElementSelected: true,
-      actions,
-    };
-  }
-
   return {
-    messageElementsSelected: "Select all elements",
-    atLeastOneElementSelected: false,
-    actions,
+    onUserLoginChange: searchGithubUsersByUserLogin,
   };
 };

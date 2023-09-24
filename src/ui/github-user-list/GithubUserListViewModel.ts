@@ -15,6 +15,7 @@ export type GithubUserListItemView = {
   avatar: string;
   url: string;
   isSelected: boolean;
+  displayEditCheckbox: boolean;
   onClickToggleSelectUser: (userId: number) => void;
 };
 
@@ -64,6 +65,7 @@ export const useGithubUserListViewModel = (): GithubUserListViewModel => {
         avatar: user.avatar_url,
         url: user.html_url,
         isSelected: state.selectedUserIds.includes(user.id),
+        displayEditCheckbox: state.isEditModeActivate,
         onClickToggleSelectUser,
       };
     }),

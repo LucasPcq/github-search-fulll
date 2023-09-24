@@ -6,6 +6,7 @@ export type GithubContextState = {
   users: GithubUser[];
   selectedUserIds: number[];
   loading: boolean;
+  isEditModeActivate: boolean;
 };
 
 export enum GithubContextEventType {
@@ -17,6 +18,8 @@ export enum GithubContextEventType {
   ALL_USER_DESELECTED = "ALL_USER_DESELECTED",
   USERS_DELETED = "USERS_DELETED",
   USERS_DUPLICATED = "USER_DUPLICATED",
+  EDIT_MODE_ACTIVATED = "EDIT_MODE_ACTIVATED",
+  EDIT_MODE_DESACTIVATED = "EDIT_MODE_DESACTIVATED",
 }
 
 export type GithubContextEvent =
@@ -49,6 +52,12 @@ export type GithubContextEvent =
   | {
       type: GithubContextEventType.USERS_DUPLICATED;
       userIds: number[];
+    }
+  | {
+      type: GithubContextEventType.EDIT_MODE_ACTIVATED;
+    }
+  | {
+      type: GithubContextEventType.EDIT_MODE_DESACTIVATED;
     };
 
 export interface GithubContextType {
@@ -107,6 +116,19 @@ export const githubContextReducer = (
           ...state.users,
           ...state.users.filter((user) => event.userIds.includes(user.id)),
         ],
+        selectedUserIds: [],
+      };
+
+    case GithubContextEventType.EDIT_MODE_ACTIVATED:
+      return {
+        ...state,
+        isEditModeActivate: true,
+      };
+
+    case GithubContextEventType.EDIT_MODE_DESACTIVATED:
+      return {
+        ...state,
+        isEditModeActivate: false,
         selectedUserIds: [],
       };
 

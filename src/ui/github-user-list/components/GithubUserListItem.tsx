@@ -8,16 +8,19 @@ const GithubUserListItem = ({
   avatar,
   url,
   isSelected,
+  displayEditCheckbox,
   onClickToggleSelectUser,
 }: GithubUserListItemView) => {
   return (
     <div className="item-github-user-list">
-      <input
-        type="checkbox"
-        className="select-github-profile"
-        onChange={() => onClickToggleSelectUser(id)}
-        checked={isSelected}
-      />
+      {displayEditCheckbox && (
+        <input
+          type="checkbox"
+          className="select-github-profile"
+          onChange={() => onClickToggleSelectUser(id)}
+          checked={isSelected}
+        />
+      )}
       <img src={avatar} className="github-avatar" />
       <div className="github-user-informations">
         <p className="github-id">{id}</p>

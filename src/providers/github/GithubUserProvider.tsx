@@ -11,6 +11,7 @@ const GithubProvider = ({ children }: { children: React.ReactNode }) => {
     users: [],
     selectedUserIds: [],
     loading: false,
+    isEditModeActivate: false,
   };
 
   const [state, dispatch] = useReducer(githubContextReducer, initialState);

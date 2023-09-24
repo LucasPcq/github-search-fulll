@@ -1,0 +1,39 @@
+.container-github-actions-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.container-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label-input-select-all {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.label-input-select-all>input {
+    transform: scale(1.5);
+}
+
+.container-delete-and-duplicate-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.button-duplicate, .button-delete {
+    border: none;
+    background-color: white;
+}
+
+.duplicate-icon,
+.delete-icon {
+    width: 1.5rem;
+    cursor: pointer;
+}
