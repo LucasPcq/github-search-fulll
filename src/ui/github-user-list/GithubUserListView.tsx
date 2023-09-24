@@ -29,9 +29,13 @@ const GithubUserListView = () => {
   }
 
   if (type === GithubUserListViewModelType.USERS_LOADED) {
-    const { users } = githubUserListViewModel;
+    const { users, onClickToggleSelectUser } = githubUserListViewModel;
     content = users.map((user) => (
-      <GithubUserListItem key={user.index} {...user} />
+      <GithubUserListItem
+        key={user.index}
+        user={user}
+        onClickToggleSelectUser={onClickToggleSelectUser}
+      />
     ));
   }
 

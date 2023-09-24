@@ -27,11 +27,11 @@ export type GithubContextEvent =
     }
   | {
       type: GithubContextEventType.USER_SELECTED;
-      userIndexes: number;
+      userIndex: number;
     }
   | {
       type: GithubContextEventType.USER_DESELECTED;
-      userIndexes: number;
+      userIndex: number;
     }
   | {
       type: GithubContextEventType.ALL_USER_SELECTED;
@@ -64,35 +64,39 @@ export const githubContextReducer = (
 ): GithubStateContext => {
   switch (event.type) {
     case GithubContextEventType.USER_SEARCH_INITIATED:
-      return { ...state, loading: true };
+      return { ...state, loading: true, selectedIndexes: [] };
 
     case GithubContextEventType.USER_LIST_RETRIEVAL:
-      return { ...state, loading: false, users: event.users };
+      return {
+        ...state,
+        loading: false,
+        users: event.users,
+      };
 
     case GithubContextEventType.USER_SELECTED:
       return {
         ...state,
-        selectedUserIndexes: [...state.selectedUserIndexes, event.userIndexes],
+        selectedIndexes: [...state.selectedIndexes, event.userIndex],
       };
 
     case GithubContextEventType.USER_DESELECTED:
       return {
         ...state,
-        selectedUserIndexes: state.selectedUserIndexes.filter(
-          (id) => id !== event.userIndexes
+        selectedIndexes: state.selectedIndexes.filter(
+          (id) => id !== event.userIndex
         ),
       };
 
     case GithubContextEventType.ALL_USER_SELECTED:
       return {
         ...state,
-        selectedUserIndexes: Array.from(state.users.keys()),
+        selectedIndexes: Array.from(state.users.keys()),
       };
 
     case GithubContextEventType.ALL_USER_DESELECTED:
       return {
         ...state,
-        selectedUserIndexes: [],
+        selectedIndexes: [],
       };
 
     case GithubContextEventType.USERS_DELETED:
@@ -101,7 +105,7 @@ export const githubContextReducer = (
         users: state.users.filter(
           (_user, index) => !event.userIndexes.includes(index)
         ),
-        selectedUserIndexes: [],
+        selectedIndexes: [],
       };
 
     case GithubContextEventType.USERS_DUPLICATED:
@@ -113,7 +117,7 @@ export const githubContextReducer = (
             event.userIndexes.includes(index)
           ),
         ],
-        selectedUserIndexes: [],
+        selectedIndexes: [],
       };
 
     case GithubContextEventType.EDIT_MODE_ACTIVATED:
@@ -126,7 +130,7 @@ export const githubContextReducer = (
       return {
         ...state,
         isEditModeActivate: false,
-        selectedUserIndexes: [],
+        selectedIndexes: [],
       };
 
     case GithubContextEventType.ERROR_FETCHING_USERS:

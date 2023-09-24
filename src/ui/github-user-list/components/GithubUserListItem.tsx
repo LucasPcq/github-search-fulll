@@ -3,15 +3,12 @@ import { GithubUserListItemView } from "../GithubUserListViewModel";
 import "../styles/GithubUserListItem.css";
 
 const GithubUserListItem = ({
-  index,
-  id,
-  login,
-  avatar,
-  url,
-  isSelected,
-  displayEditCheckbox,
+  user: { index, id, avatar, login, url, displayEditCheckbox, isSelected },
   onClickToggleSelectUser,
-}: GithubUserListItemView) => {
+}: {
+  user: GithubUserListItemView;
+  onClickToggleSelectUser: (index: number) => void;
+}) => {
   return (
     <div className="item-github-user-list">
       {displayEditCheckbox && (

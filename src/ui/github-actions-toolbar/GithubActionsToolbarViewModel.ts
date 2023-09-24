@@ -1,5 +1,9 @@
 import { useGithubContext } from "../../context/github/useGithubContext";
-import { GithubContextEventType } from "../../context/github/EventContext";
+
+import { toggleSelectAllUsers } from "../../core/github/use-cases/toggle-select-all-users";
+import { toggleEditMode } from "../../core/github/use-cases/toggle-edit-mode";
+import { deleteSelectedUsers } from "../../core/github/use-cases/delete-selected-users";
+import { duplicateSelectedUsers } from "../../core/github/use-cases/duplicate-selected-users";
 
 export type GithubActionsToolbarViewModel = {
   messageElementsSelected: string;
@@ -19,32 +23,16 @@ export const useGithubActionsToolbarViewModel =
     const { state, dispatch } = useGithubContext();
 
     const onClickDeleteSelectedUsers = () =>
-      dispatch({
-        type: GithubContextEventType.USERS_DELETED,
-        userIndexes: state.selectedUserIndexes,
-      });
+      deleteSelectedUsers(state.selectedIndexes)(dispatch);
 
     const onClickDuplicateSelectedUsers = () =>
-      dispatch({
-        type: GithubContextEventType.USERS_DUPLICATED,
-        userIndexes: state.selectedUserIndexes,
-      });
+      duplicateSelectedUsers(state.selectedIndexes)(dispatch);
 
-    const onClickToggleSelectAllUsers = () => {
-      if (state.selectedUserIndexes.length === 0) {
-        dispatch({ type: GithubContextEventType.ALL_USER_SELECTED });
-      } else {
-        dispatch({ type: GithubContextEventType.ALL_USER_DESELECTED });
-      }
-    };
+    const onClickToggleSelectAllUsers = () =>
+      toggleSelectAllUsers(state.selectedIndexes)(dispatch);
 
-    const onClickToggleEditMode = () => {
-      if (state.isEditModeActivate) {
-        dispatch({ type: GithubContextEventType.EDIT_MODE_DESACTIVATED });
-      } else {
-        dispatch({ type: GithubContextEventType.EDIT_MODE_ACTIVATED });
-      }
-    };
+    const onClickToggleEditMode = () =>
+      toggleEditMode(state.isEditModeActivate)(dispatch);
 
     const actions = {
       onClickDeleteSelectedUsers,
@@ -58,13 +46,13 @@ export const useGithubActionsToolbarViewModel =
       : "Activate Edit Mode";
 
     const messageElementsSelected =
-      state.selectedUserIndexes.length > 0
-        ? `${state.selectedUserIndexes.length} elements selected`
+      state.selectedIndexes.length > 0
+        ? `${state.selectedIndexes.length} elements selected`
         : "Select all elements";
 
     return {
       messageElementsSelected,
-      atLeastOneElementSelected: state.selectedUserIndexes.length > 0,
+      atLeastOneElementSelected: state.selectedIndexes.length > 0,
       textEditMode,
       actions,
       displayActions: state.isEditModeActivate,

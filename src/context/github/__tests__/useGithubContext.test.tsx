@@ -22,7 +22,7 @@ describe("useGithubContext", () => {
     const mockContextValue: GithubContextType = {
       state: {
         users: [],
-        selectedUserIndexes: [],
+        selectedIndexes: [],
         loading: false,
         error: null,
         isEditModeActivate: false,
