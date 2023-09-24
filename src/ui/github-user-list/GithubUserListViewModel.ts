@@ -5,6 +5,7 @@ export enum GithubUserListViewModelType {
   NO_USERS = "NO_USERS",
   USERS_LOADING = "USERS_LOADING",
   USERS_LOADED = "USERS_LOADED",
+  ERROR_FETCHING_USERS = "ERROR_FETCHING_USERS",
 }
 
 export type GithubUserListItemView = {
@@ -28,6 +29,10 @@ export type GithubUserListViewModel =
   | {
       type: GithubUserListViewModelType.USERS_LOADED;
       users: GithubUserListItemView[];
+    }
+  | {
+      type: GithubUserListViewModelType.ERROR_FETCHING_USERS;
+      message: string;
     };
 
 export const useGithubUserListViewModel = (): GithubUserListViewModel => {
@@ -43,6 +48,13 @@ export const useGithubUserListViewModel = (): GithubUserListViewModel => {
     return {
       type: GithubUserListViewModelType.NO_USERS,
       message: "No users",
+    };
+  }
+
+  if (state.error) {
+    return {
+      type: GithubUserListViewModelType.ERROR_FETCHING_USERS,
+      message: state.error,
     };
   }
 

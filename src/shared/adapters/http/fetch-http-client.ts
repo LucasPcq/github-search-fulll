@@ -1,4 +1,4 @@
-import { HttpClient } from ".";
+import { HttpClient, HttpClientError } from ".";
 
 export const fetchHttpClient = (): HttpClient => ({
   get: async <ResponseType>(
@@ -6,6 +6,16 @@ export const fetchHttpClient = (): HttpClient => ({
     headers?: Record<string, string>
   ): Promise<ResponseType> => {
     const response = await fetch(url, { method: "GET", headers });
+
+    if (!response.ok) {
+      const error: HttpClientError = {
+        status: response.status,
+        statusText: response.statusText,
+      };
+
+      return Promise.reject(error);
+    }
+
     return response.json();
   },
 });

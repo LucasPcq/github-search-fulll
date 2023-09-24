@@ -6,3 +6,7 @@
     padding: 1rem;
     overflow-y: scroll;
 }
+
+.error-alert {
+    color: red;
+}

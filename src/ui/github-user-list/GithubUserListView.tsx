@@ -27,6 +27,15 @@ const GithubUserListView = (props: GithubUserListViewModel) => {
     );
   }
 
+  if (type === GithubUserListViewModelType.ERROR_FETCHING_USERS) {
+    const { message } = props;
+    return (
+      <div className="container-github-user-list">
+        <p className="error-alert">{message}</p>
+      </div>
+    );
+  }
+
   const { users } = props;
 
   return (

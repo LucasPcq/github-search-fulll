@@ -13,6 +13,7 @@ export enum GithubContextEventType {
   USERS_DUPLICATED = "USER_DUPLICATED",
   EDIT_MODE_ACTIVATED = "EDIT_MODE_ACTIVATED",
   EDIT_MODE_DESACTIVATED = "EDIT_MODE_DESACTIVATED",
+  ERROR_FETCHING_USERS = "ERROR_FETCHING_USERS",
 }
 
 export type GithubContextEvent =
@@ -51,6 +52,10 @@ export type GithubContextEvent =
     }
   | {
       type: GithubContextEventType.EDIT_MODE_DESACTIVATED;
+    }
+  | {
+      type: GithubContextEventType.ERROR_FETCHING_USERS;
+      message: string;
     };
 
 export const githubContextReducer = (
@@ -118,6 +123,13 @@ export const githubContextReducer = (
         ...state,
         isEditModeActivate: false,
         selectedUserIds: [],
+      };
+
+    case GithubContextEventType.ERROR_FETCHING_USERS:
+      return {
+        ...state,
+        loading: false,
+        error: event.message,
       };
 
     default:
