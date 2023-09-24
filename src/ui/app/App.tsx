@@ -1,12 +1,12 @@
-import { Header } from "../../layouts/Header";
+import { Header } from "@/layouts/header/Header";
 
-import GithubServiceProvider from "../../context/github-service/providers/GithubServiceProvider";
+import GithubServiceProvider from "@/modules/github/context/providers/GithubServiceProvider";
 
-import GithubSearchView from "../github-search/GithubSearchView";
-import GithubActionsToolbarView from "../github-actions-toolbar/GithubActionsToolbarView";
-import GithubUserListView from "../github-user-list/GithubUserListView";
+import GithubSearchView from "@/ui/github/github-search/GithubSearchView";
+import GithubActionsToolbarView from "@/ui/github/github-actions-toolbar/GithubActionsToolbarView";
+import GithubUserListView from "@/ui/github/github-user-list/GithubUserListView";
 
-import "./styles/App.css";
+import "./App.css";
 
 const App = () => {
   return (

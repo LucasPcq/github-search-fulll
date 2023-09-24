@@ -1,27 +1,52 @@
-# React + TypeScript + Vite
+# Github User Search | Fulll
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Subject
 
-Currently, two official plugins are available:
+[Github User Search Intermediate Senior - Fulll Hiring ](https://github.com/fulll/hiring/blob/master/Frontend/github-user-search-intermediaire-senior.md)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+```bash
+# NPM
+npm install
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# PNPM
+pnpm install
+pnpm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Documentation
+
+### Architecture Explanation
+
+---
+
+![Excalidraw Archictecture Explanation](./src/docs/withdraw-architecture.png)
+
+I have decided to follow some principles of the Clean Architecture. The goal of the Clean Architecture is to isolate the domain and avoid dependencies between the differents parts. This allow a better testability and modularity.
+
+I have followed a MVVM Pattern to render the component dumb as possible, with no logic business.
+
+As we weren't allowed to use any dependencies other than testing libraries, i have decided to use React Context like a State Management.
+
+I also used an approach of programming oriented events.
+
+Even if it's a Clean Architecture, i have decided to coupling my use cases to React Context. Not coupling the domain to Redux or any other State Management whould have added a lot of wrapper to avoid dependencies.
+
+I only had added the dependency `path` to use an alias on the project to improve the readibility of file paths.
+
+## Testing
+
+```bash
+# NPM
+npm run test
+
+# PNPM
+pnpm run test
+```
+
+### Libraries
+
+- vitest
+- @testing-library/react

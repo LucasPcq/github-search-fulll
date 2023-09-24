@@ -14,6 +14,9 @@ dependencies:
   jsdom:
     specifier: ^22.1.0
     version: 22.1.0
+  pah:
+    specifier: ^1.0.0
+    version: 1.0.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -3363,6 +3366,10 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /pah@1.0.0:
+    resolution: {integrity: sha512-Yr9BeK0PZfnayLfTKxxBxU+tWZp8DXANYks8yiU+9SuslBFyGpKngiWZoswHkWrULs4E77twhaWFJdLbTUi8YQ==}
+    dev: false
 
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
