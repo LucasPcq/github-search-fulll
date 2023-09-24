@@ -1,7 +1,5 @@
-import {
-  GithubContextEventType,
-  useGithubContext,
-} from "../../context/github/useGithubContext";
+import { useGithubContext } from "../../context/github/useGithubContext";
+import { GithubContextEventType } from "../../context/github/EventContext";
 
 export type GithubActionsToolbarViewModel = {
   messageElementsSelected: string;

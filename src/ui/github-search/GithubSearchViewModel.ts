@@ -1,14 +1,12 @@
 import { useCallback, useRef } from "react";
 
-import {
-  GithubContextEventType,
-  useGithubContext,
-} from "../../context/github/useGithubContext";
+import { useGithubContext } from "../../context/github/useGithubContext";
+import { GithubContextEventType } from "../../context/github/EventContext";
 
-import { githubService } from "../../core/github/services/github.service";
+import { useGithubServiceContext } from "../../context/github-service/useGithubServiceContext";
+
 import { getGithubUserListByUserLogin } from "../../core/github/use-cases/get-github-user-list-by-user-login";
 
-import { fetchHttpClient } from "../../shared/adapters/http";
 import { debounce } from "../../shared/utils";
 
 export type GithubSearchViewModel = {
@@ -17,13 +15,11 @@ export type GithubSearchViewModel = {
 
 export const useGithubSearchViewModel = (): GithubSearchViewModel => {
   const { dispatch } = useGithubContext();
+  const { githubService } = useGithubServiceContext();
 
-  //TODO: Improve that
   const debouncedSearch = useRef(
     debounce(async (userLogin: string) => {
-      getGithubUserListByUserLogin(githubService(fetchHttpClient()))(userLogin)(
-        dispatch
-      );
+      getGithubUserListByUserLogin(githubService)(userLogin)(dispatch);
     }, 700)
   );
 

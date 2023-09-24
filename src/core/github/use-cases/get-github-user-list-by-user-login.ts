@@ -3,7 +3,7 @@ import { IGithubService } from "../services";
 import {
   GithubContextEvent,
   GithubContextEventType,
-} from "../../../context/github/useGithubContext";
+} from "../../../context/github/EventContext";
 
 export const getGithubUserListByUserLogin =
   (githubService: IGithubService) => (userLogin: string) => {

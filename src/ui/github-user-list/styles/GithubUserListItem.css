@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 
     gap: 1rem;
-    min-width: 100px;
-    max-width: 100px;
     border-radius: 6px;
 
     background-color: #B9B4C7;
@@ -13,6 +12,7 @@
     padding: 1rem 0.5rem;
 
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .select-github-profile {
@@ -22,6 +22,8 @@
 }
 
 .github-user-informations {
+    width: 100%;
+    overflow-wrap: break-word;
     font-weight: bold;
     text-align: center;
 }

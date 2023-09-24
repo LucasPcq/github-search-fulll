@@ -1,24 +1,24 @@
 import { Header } from "../../layouts/Header";
 
+import GithubServiceProvider from "../../context/github-service/providers/GithubServiceProvider";
+
 import GithubSearchPresenter from "../github-search/GithubSearchPresenter";
 import GithubUserListPresenter from "../github-user-list/GithubUserListPresenter";
-
-import GithubProvider from "../../providers/github/GithubUserProvider";
-
-import "./styles/App.css";
 import GithubActionsToolbarPresenter from "../github-actions-toolbar/GithubActionsToolbarPresenter";
 
-function App() {
+import "./styles/App.css";
+
+const App = () => {
   return (
     <>
       <Header />
-      <GithubProvider>
+      <GithubServiceProvider>
         <GithubSearchPresenter />
         <GithubActionsToolbarPresenter />
         <GithubUserListPresenter />
-      </GithubProvider>
+      </GithubServiceProvider>
     </>
   );
-}
+};
 
 export default App;
