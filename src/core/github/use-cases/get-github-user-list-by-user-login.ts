@@ -1,10 +1,11 @@
-import { IGithubService } from "../services";
-import { isGithubServiceError } from "../services/github.service";
+import { IGithubService } from "../services/github.service";
 
 import {
   GithubContextEvent,
   GithubContextEventType,
 } from "../../../context/github/EventContext";
+
+import { isServiceError } from "../../../shared/guards/error";
 
 export const getGithubUserListByUserLogin =
   (githubService: IGithubService) => (userLogin: string) => {
@@ -24,7 +25,7 @@ export const getGithubUserListByUserLogin =
           users: items,
         });
       } catch (error) {
-        if (isGithubServiceError(error)) {
+        if (isServiceError(error)) {
           if (error.status === 403) {
             return dispatch({
               type: GithubContextEventType.ERROR_FETCHING_USERS,
