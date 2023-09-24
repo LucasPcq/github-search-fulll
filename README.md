@@ -34,7 +34,103 @@ I also used an approach of programming oriented events.
 
 Even if it's a Clean Architecture, i have decided to coupling my use cases to React Context. Not coupling the domain to Redux or any other State Management whould have added a lot of wrapper to avoid dependencies.
 
-I only had added the dependency `path` to use an alias on the project to improve the readibility of file paths.
+### Folder Structure
+
+---
+
+#### Modules
+
+In the modules folder, you'll find all the files linked to a context. These are the types and the state of our application in our case. We can also find in the `use-cases` folder, all the features of this context.
+
+```bash
+modules
+│   └── github
+│       ├── context
+│       │   ├── EventContext.ts
+│       │   ├── StateContext.ts
+│       │   ├── __tests__
+│       │   │   ├── EventContext.test.ts
+│       │   │   ├── useGithubContext.test.tsx
+│       │   │   └── useGithubServiceContext.test.tsx
+│       │   ├── index.ts
+│       │   ├── providers
+│       │   │   ├── GithubProvider.tsx
+│       │   │   └── GithubServiceProvider.tsx
+│       │   ├── useGithubContext.ts
+│       │   └── useGithubServiceContext.ts
+│       └── core
+│           ├── dto
+│           │   └── fetch-users.dto.ts
+│           ├── services
+│           │   ├── github.service.ts
+│           │   └── in-memory.ts
+│           ├── types
+│           │   └── GithubUser.ts
+│           └── use-cases
+│               ├── delete-selected-users.ts
+│               ├── duplicate-selected-users.ts
+│               ├── get-github-user-list-by-user-login.ts
+│               ├── index.ts
+│               ├── toggle-edit-mode.ts
+│               ├── toggle-select-all-users.ts
+│               └── toggle-user-selection.ts
+```
+
+#### UI
+
+---
+
+For the user interface folder, you clearly seen certain parts of the MVVM Pattern. Each part, which contains logic and state data, has a View file (.tsx) and a ViewModel file (.ts). The ViewModel export a hook which is used by the View file.
+
+```bash
+.
+├── ui
+│   ├── app
+│   │   ├── App.css
+│   │   └── App.tsx
+│   └── github
+│       ├── github-actions-toolbar
+│       │   ├── GithubActionsToolbarView.css
+│       │   ├── GithubActionsToolbarView.tsx
+│       │   └── GithubActionsToolbarViewModel.ts
+│       ├── github-search
+│       │   ├── GithubSearchView.css
+│       │   ├── GithubSearchView.tsx
+│       │   └── GithubSearchViewModel.ts
+│       └── github-user-list
+│           ├── GithubUserListView.css
+│           ├── GithubUserListView.tsx
+│           ├── GithubUserListViewModel.ts
+│           └── github-user-list-item
+│               ├── GithubUserListItem.css
+│               └── GithubUserListItem.tsx
+
+```
+
+#### Shared
+
+---
+
+In the shared folder, you can find adapters that can be used by several modules / files. They are also guards, utils or components.
+
+```bash
+.
+├── shared
+│   ├── adapters
+│   │   ├── errors
+│   │   │   └── index.ts
+│   │   └── http
+│   │       ├── fetch-http-client.ts
+│   │       └── index.ts
+│   ├── assets
+│   │   └── icons
+│   │       ├── duplicate.svg
+│   │       └── trash.svg
+│   ├── guards
+│   │   └── error.ts
+│   └── utils
+│       └── index.ts
+```
 
 ## Testing
 
@@ -46,7 +142,9 @@ npm run test
 pnpm run test
 ```
 
-### Libraries
+## Libraries
 
 - vitest
+- jsdom
 - @testing-library/react
+- @testing-library/js-dom

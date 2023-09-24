@@ -1,4 +1,4 @@
-import { fakeUsers } from "../../core/services/in-memory";
+import { fakeUsers } from "@/modules/github/core/services/in-memory";
 
 import {
   GithubContextEvent,
