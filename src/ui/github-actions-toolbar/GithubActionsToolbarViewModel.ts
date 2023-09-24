@@ -14,7 +14,7 @@ export type GithubActionsToolbarViewModel = {
   };
 };
 
-export const useGithubActionsToolbarViewMoidel =
+export const useGithubActionsToolbarViewModel =
   (): GithubActionsToolbarViewModel => {
     const { state, dispatch } = useGithubContext();
 

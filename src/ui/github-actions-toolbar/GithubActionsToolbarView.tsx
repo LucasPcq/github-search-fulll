@@ -1,14 +1,16 @@
-import { GithubActionsToolbarViewModel } from "./GithubActionsToolbarViewModel";
+import { useGithubActionsToolbarViewModel } from "./GithubActionsToolbarViewModel";
 
 import "./styles/GithubActionsToolbarView.css";
 
-const GithubActionsToolbarView = ({
-  actions,
-  textEditMode,
-  displayActions,
-  atLeastOneElementSelected,
-  messageElementsSelected,
-}: GithubActionsToolbarViewModel) => {
+const GithubActionsToolbarView = () => {
+  const {
+    actions,
+    textEditMode,
+    displayActions,
+    atLeastOneElementSelected,
+    messageElementsSelected,
+  } = useGithubActionsToolbarViewModel();
+
   const {
     onClickDeleteSelectedUsers,
     onClickDuplicateSelectedUsers,

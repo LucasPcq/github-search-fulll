@@ -2,9 +2,9 @@ import { Header } from "../../layouts/Header";
 
 import GithubServiceProvider from "../../context/github-service/providers/GithubServiceProvider";
 
-import GithubSearchPresenter from "../github-search/GithubSearchPresenter";
-import GithubUserListPresenter from "../github-user-list/GithubUserListPresenter";
-import GithubActionsToolbarPresenter from "../github-actions-toolbar/GithubActionsToolbarPresenter";
+import GithubSearchView from "../github-search/GithubSearchView";
+import GithubActionsToolbarView from "../github-actions-toolbar/GithubActionsToolbarView";
+import GithubUserListView from "../github-user-list/GithubUserListView";
 
 import "./styles/App.css";
 
@@ -13,9 +13,9 @@ const App = () => {
     <>
       <Header />
       <GithubServiceProvider>
-        <GithubSearchPresenter />
-        <GithubActionsToolbarPresenter />
-        <GithubUserListPresenter />
+        <GithubSearchView />
+        <GithubActionsToolbarView />
+        <GithubUserListView />
       </GithubServiceProvider>
     </>
   );

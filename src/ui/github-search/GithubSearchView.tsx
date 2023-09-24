@@ -1,8 +1,10 @@
-import { GithubSearchViewModel } from "./GithubSearchViewModel";
+import { useGithubSearchViewModel } from "./GithubSearchViewModel";
 
 import "./styles/GithubSearchView.css";
 
-const GithubSearchView = ({ onUserLoginChange }: GithubSearchViewModel) => {
+const GithubSearchView = () => {
+  const { onUserLoginChange } = useGithubSearchViewModel();
+
   return (
     <div className="container-github-search">
       <input
