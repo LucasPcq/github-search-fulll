@@ -16,6 +16,16 @@ pnpm install
 pnpm run dev
 ```
 
+## Testing
+
+```bash
+# NPM
+npm run test
+
+# PNPM
+pnpm run test
+```
+
 ## Documentation
 
 ### Architecture Explanation
@@ -132,15 +142,15 @@ In the shared folder, you can find adapters that can be used by several modules 
 │       └── index.ts
 ```
 
-## Testing
+## Why i have used index and not the Github User Id ?
 
-```bash
-# NPM
-npm run test
+There's a feature in the test that allow you to duplicate a Github User Profile on the frontend.
 
-# PNPM
-pnpm run test
-```
+If we want to store the Github User Id in an array, we can run into problems when we want to delete the selected user. The duplicated user has the same Github User Id, so the delete actions will delete both, which is not what we want.
+
+That's why i choose to used the index of the user in the array instead of the user id.
+
+The best whould have been to generate a unique identifier for each Github User Profile, when it's fetched and also when it's duplicated. We can do that with the `Math.random` function or with the `uuid` library.
 
 ## Things to improve
 
@@ -148,6 +158,7 @@ pnpm run test
 - Add more tests to the components and the modules
 - Improve the error handling between the fetch client / service / use-case
 - Add a unique identifier to each user rather than used the key index
+- Add retry after the rate limit time, and display the rate limit time to the user
 
 ## Libraries
 
