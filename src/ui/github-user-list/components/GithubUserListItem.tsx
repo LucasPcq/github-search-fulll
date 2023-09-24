@@ -1,20 +1,23 @@
+import { GithubUserListItemView } from "../GithubUserListViewModel";
+
 import "../styles/GithubUserListItem.css";
 
-interface Props {
-  user: {
-    id: number;
-    login: string;
-    avatar: string;
-    url: string;
-  };
-}
-
-const GithubUserListItem = ({ user }: Props) => {
-  const { avatar, url, id, login } = user;
-
+const GithubUserListItem = ({
+  id,
+  login,
+  avatar,
+  url,
+  isSelected,
+  onClickToggleSelectUser,
+}: GithubUserListItemView) => {
   return (
     <div className="item-github-user-list">
-      <input type="checkbox" className="select-github-profile" />
+      <input
+        type="checkbox"
+        className="select-github-profile"
+        onChange={() => onClickToggleSelectUser(id)}
+        checked={isSelected}
+      />
       <img src={avatar} className="github-avatar" />
       <div className="github-user-informations">
         <p className="github-id">{id}</p>

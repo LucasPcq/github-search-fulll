@@ -10,9 +10,21 @@ import "./styles/GithubUserListView.css";
 const GithubUserListView = (props: GithubUserListViewModel) => {
   const { type } = props;
 
+  if (type === GithubUserListViewModelType.USERS_LOADING) {
+    return (
+      <div className="container-github-user-list">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   if (type === GithubUserListViewModelType.NO_USERS) {
     const { message } = props;
-    return <p>{message}</p>;
+    return (
+      <div className="container-github-user-list">
+        <p>{message}</p>
+      </div>
+    );
   }
 
   const { users } = props;
@@ -20,8 +32,8 @@ const GithubUserListView = (props: GithubUserListViewModel) => {
   return (
     <>
       <div className="container-github-user-list">
-        {users.map((user) => (
-          <GithubUserListItem user={user} key={user.id} />
+        {users.map((user, index) => (
+          <GithubUserListItem key={index} {...user} />
         ))}
       </div>
     </>

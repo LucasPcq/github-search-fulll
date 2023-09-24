@@ -1,30 +1,27 @@
-import { useCallback, useState } from "react";
+import { useReducer } from "react";
 
-import { GithubContext } from "../../context/github/useGithubContext";
-
-import { GithubUser } from "../../core/github/types/Github";
-
-import { githubService } from "../../core/github/services/github.service";
-import { fetchHttpClient } from "../../shared/adapters/http";
-
-import { debounce } from "../../shared/utils";
+import {
+  GithubContext,
+  GithubContextState,
+  githubContextReducer,
+} from "../../context/github/useGithubContext";
 
 const GithubProvider = ({ children }: { children: React.ReactNode }) => {
-  const [users, setUsers] = useState<GithubUser[]>([]);
+  const initialState: GithubContextState = {
+    users: [],
+    selectedUserIds: [],
+    loading: false,
+  };
 
-  const debouncedSearch = debounce(async (userLogin: string) => {
-    const { items } = await githubService(fetchHttpClient()).fetchUsersByLogin(
-      userLogin
-    );
-    setUsers(items);
-  }, 500);
-
-  const searchGithubUsersByUserLogin = useCallback(debouncedSearch, [
-    debouncedSearch,
-  ]);
+  const [state, dispatch] = useReducer(githubContextReducer, initialState);
 
   return (
-    <GithubContext.Provider value={{ searchGithubUsersByUserLogin, users }}>
+    <GithubContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       {children}
     </GithubContext.Provider>
   );

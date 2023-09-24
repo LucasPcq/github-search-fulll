@@ -1,25 +1,11 @@
-import { useState } from "react";
-
-import { useGithubContext } from "../../context/github/useGithubContext";
+import { useGithubSearchViewModel } from "./GithubSearchViewModel";
 
 import GithubSearchView from "./GithubSearchView";
 
 const GithubSearchPresenter = () => {
-  const { searchGithubUsersByUserLogin } = useGithubContext();
+  const githubSearchViewModel = useGithubSearchViewModel();
 
-  const [userLogin, setUserLogin] = useState<string>("");
-
-  const handleUserLoginChange = (userLogin: string) => {
-    setUserLogin(userLogin);
-    searchGithubUsersByUserLogin(userLogin);
-  };
-
-  return (
-    <GithubSearchView
-      userLogin={userLogin}
-      onUserLoginChange={handleUserLoginChange}
-    />
-  );
+  return <GithubSearchView {...githubSearchViewModel} />;
 };
 
 export default GithubSearchPresenter;
