@@ -9,13 +9,14 @@ export enum GithubUserListViewModelType {
 }
 
 export type GithubUserListItemView = {
+  index: number;
   id: number;
   login: string;
   avatar: string;
   url: string;
   isSelected: boolean;
   displayEditCheckbox: boolean;
-  onClickToggleSelectUser: (userId: number) => void;
+  onClickToggleSelectUser: (userIndex: number) => void;
 };
 
 export type GithubUserListViewModel =
@@ -58,23 +59,30 @@ export const useGithubUserListViewModel = (): GithubUserListViewModel => {
     };
   }
 
-  const onClickToggleSelectUser = (userId: number) => {
-    if (!state.selectedUserIds.includes(userId)) {
-      dispatch({ type: GithubContextEventType.USER_SELECTED, userId });
+  const onClickToggleSelectUser = (userIndex: number) => {
+    if (!state.selectedUserIndexes.includes(userIndex)) {
+      dispatch({
+        type: GithubContextEventType.USER_SELECTED,
+        userIndexes: userIndex,
+      });
     } else {
-      dispatch({ type: GithubContextEventType.USER_DESELECTED, userId });
+      dispatch({
+        type: GithubContextEventType.USER_DESELECTED,
+        userIndexes: userIndex,
+      });
     }
   };
 
   return {
     type: GithubUserListViewModelType.USERS_LOADED,
-    users: state.users.map((user) => {
+    users: state.users.map((user, index) => {
       return {
+        index,
         id: user.id,
         login: user.login,
         avatar: user.avatar_url,
         url: user.html_url,
-        isSelected: state.selectedUserIds.includes(user.id),
+        isSelected: state.selectedUserIndexes.includes(index),
         displayEditCheckbox: state.isEditModeActivate,
         onClickToggleSelectUser,
       };

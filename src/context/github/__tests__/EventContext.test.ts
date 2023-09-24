@@ -10,7 +10,7 @@ import { GithubStateContext } from "../StateContext";
 
 const state: GithubStateContext = {
   users: [],
-  selectedUserIds: [],
+  selectedUserIndexes: [],
   loading: false,
   error: null,
   isEditModeActivate: false,

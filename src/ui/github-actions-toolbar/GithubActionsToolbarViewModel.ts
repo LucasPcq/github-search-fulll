@@ -21,17 +21,17 @@ export const useGithubActionsToolbarViewModel =
     const onClickDeleteSelectedUsers = () =>
       dispatch({
         type: GithubContextEventType.USERS_DELETED,
-        userIds: state.selectedUserIds,
+        userIndexes: state.selectedUserIndexes,
       });
 
     const onClickDuplicateSelectedUsers = () =>
       dispatch({
         type: GithubContextEventType.USERS_DUPLICATED,
-        userIds: state.selectedUserIds,
+        userIndexes: state.selectedUserIndexes,
       });
 
     const onClickToggleSelectAllUsers = () => {
-      if (state.selectedUserIds.length === 0) {
+      if (state.selectedUserIndexes.length === 0) {
         dispatch({ type: GithubContextEventType.ALL_USER_SELECTED });
       } else {
         dispatch({ type: GithubContextEventType.ALL_USER_DESELECTED });
@@ -58,13 +58,13 @@ export const useGithubActionsToolbarViewModel =
       : "Activate Edit Mode";
 
     const messageElementsSelected =
-      state.selectedUserIds.length > 0
-        ? `${state.selectedUserIds.length} elements selected`
+      state.selectedUserIndexes.length > 0
+        ? `${state.selectedUserIndexes.length} elements selected`
         : "Select all elements";
 
     return {
       messageElementsSelected,
-      atLeastOneElementSelected: state.selectedUserIds.length > 0,
+      atLeastOneElementSelected: state.selectedUserIndexes.length > 0,
       textEditMode,
       actions,
       displayActions: state.isEditModeActivate,

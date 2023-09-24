@@ -30,8 +30,8 @@ const GithubUserListView = () => {
 
   if (type === GithubUserListViewModelType.USERS_LOADED) {
     const { users } = githubUserListViewModel;
-    content = users.map((user, index) => (
-      <GithubUserListItem key={index} {...user} />
+    content = users.map((user) => (
+      <GithubUserListItem key={user.index} {...user} />
     ));
   }
 

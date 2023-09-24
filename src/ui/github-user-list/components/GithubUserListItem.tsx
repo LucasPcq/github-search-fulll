@@ -3,6 +3,7 @@ import { GithubUserListItemView } from "../GithubUserListViewModel";
 import "../styles/GithubUserListItem.css";
 
 const GithubUserListItem = ({
+  index,
   id,
   login,
   avatar,
@@ -17,7 +18,7 @@ const GithubUserListItem = ({
         <input
           type="checkbox"
           className="select-github-profile"
-          onChange={() => onClickToggleSelectUser(id)}
+          onChange={() => onClickToggleSelectUser(index)}
           checked={isSelected}
         />
       )}

@@ -2,7 +2,7 @@ import { GithubUser } from "../../core/github/types/Github";
 
 export type GithubStateContext = {
   users: GithubUser[];
-  selectedUserIds: number[];
+  selectedUserIndexes: number[];
   loading: boolean;
   error: string | null;
   isEditModeActivate: boolean;
@@ -10,7 +10,7 @@ export type GithubStateContext = {
 
 export const initialGithubStateContext: GithubStateContext = {
   users: [],
-  selectedUserIds: [],
+  selectedUserIndexes: [],
   loading: false,
   error: null,
   isEditModeActivate: false,
