@@ -1,9 +1,12 @@
 import { createContext, useContext } from "react";
-import { IGithubService } from "../../core/github/services";
+import { IGithubService } from "../../core/github/services/github.service";
 
-export const GithubServiceContext = createContext<{
+export interface GithubServiceContextType {
   githubService: IGithubService;
-} | null>(null);
+}
+
+export const GithubServiceContext =
+  createContext<GithubServiceContextType | null>(null);
 
 export const useGithubServiceContext = () => {
   const githubServiceContext = useContext(GithubServiceContext);
