@@ -45,17 +45,17 @@ export const useGithubUserListViewModel = (): GithubUserListViewModel => {
     };
   }
 
-  if (state.users.length < 1) {
-    return {
-      type: GithubUserListViewModelType.NO_USERS,
-      message: "No users",
-    };
-  }
-
   if (state.error) {
     return {
       type: GithubUserListViewModelType.ERROR_FETCHING_USERS,
       message: state.error,
+    };
+  }
+
+  if (state.users.length < 1) {
+    return {
+      type: GithubUserListViewModelType.NO_USERS,
+      message: "No users",
     };
   }
 

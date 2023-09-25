@@ -61,7 +61,7 @@ describe("githubContextReducer", () => {
   });
   it("Event ALL_USER_SELECTED should add all user indexes from selectedUserIndexes", () => {
     const event: GithubContextEvent = {
-      type: GithubContextEventType.ALL_USER_SELECTED,
+      type: GithubContextEventType.ALL_USERS_SELECTED,
     };
 
     const newState = githubContextReducer(
@@ -72,7 +72,7 @@ describe("githubContextReducer", () => {
   });
   it("Event ALL_USER_DESELECTED should remove all user indexes from selectedUserIndexes", () => {
     const event: GithubContextEvent = {
-      type: GithubContextEventType.ALL_USER_DESELECTED,
+      type: GithubContextEventType.ALL_USERS_DESELECTED,
     };
 
     const newState = githubContextReducer(

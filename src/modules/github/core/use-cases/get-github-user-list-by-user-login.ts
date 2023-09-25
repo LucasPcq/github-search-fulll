@@ -10,10 +10,9 @@ import { isServiceError } from "@/shared/guards/error";
 export const getGithubUserListByUserLogin =
   (githubService: IGithubService) => (userLogin: string) => {
     return async (dispatch: React.Dispatch<GithubContextEvent>) => {
-      if (userLogin.length < 1) {
+      if (userLogin.length === 0) {
         return dispatch({
-          type: GithubContextEventType.USER_LIST_RETRIEVAL,
-          users: [],
+          type: GithubContextEventType.EMPTY_USER_LIST,
         });
       }
 

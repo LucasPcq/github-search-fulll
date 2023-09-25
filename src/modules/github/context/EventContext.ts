@@ -4,11 +4,12 @@ import { GithubStateContext } from "./StateContext";
 
 export enum GithubContextEventType {
   USER_SEARCH_INITIATED = "USER_SEARCH_INITIATED",
+  EMPTY_USER_LIST = "EMPTY_USER_LIST",
   USER_LIST_RETRIEVAL = "USER_LIST_RETRIEVAL",
   USER_SELECTED = "USER_SELECTED",
   USER_DESELECTED = "USER_DESELECTED",
-  ALL_USER_SELECTED = "ALL_USER_SELECTED",
-  ALL_USER_DESELECTED = "ALL_USER_DESELECTED",
+  ALL_USERS_SELECTED = "ALL_USERS_SELECTED",
+  ALL_USERS_DESELECTED = "ALL_USERS_DESELECTED",
   USERS_DELETED = "USERS_DELETED",
   USERS_DUPLICATED = "USER_DUPLICATED",
   EDIT_MODE_ACTIVATED = "EDIT_MODE_ACTIVATED",
@@ -20,6 +21,9 @@ export type GithubContextEvent =
   | {
       type: GithubContextEventType.USER_SEARCH_INITIATED;
       userLogin: string;
+    }
+  | {
+      type: GithubContextEventType.EMPTY_USER_LIST;
     }
   | {
       type: GithubContextEventType.USER_LIST_RETRIEVAL;
@@ -34,10 +38,10 @@ export type GithubContextEvent =
       userIndex: number;
     }
   | {
-      type: GithubContextEventType.ALL_USER_SELECTED;
+      type: GithubContextEventType.ALL_USERS_SELECTED;
     }
   | {
-      type: GithubContextEventType.ALL_USER_DESELECTED;
+      type: GithubContextEventType.ALL_USERS_DESELECTED;
     }
   | {
       type: GithubContextEventType.USERS_DELETED;
@@ -66,6 +70,9 @@ export const githubContextReducer = (
     case GithubContextEventType.USER_SEARCH_INITIATED:
       return { ...state, loading: true, selectedIndexes: [] };
 
+    case GithubContextEventType.EMPTY_USER_LIST:
+      return { ...state, users: [], loading: false, selectedIndexes: [] };
+
     case GithubContextEventType.USER_LIST_RETRIEVAL:
       return {
         ...state,
@@ -87,13 +94,13 @@ export const githubContextReducer = (
         ),
       };
 
-    case GithubContextEventType.ALL_USER_SELECTED:
+    case GithubContextEventType.ALL_USERS_SELECTED:
       return {
         ...state,
         selectedIndexes: Array.from(state.users.keys()),
       };
 
-    case GithubContextEventType.ALL_USER_DESELECTED:
+    case GithubContextEventType.ALL_USERS_DESELECTED:
       return {
         ...state,
         selectedIndexes: [],

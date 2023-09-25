@@ -155,7 +155,7 @@ The best whould have been to generate a unique identifier for each Github User P
 ## Things to improve
 
 - Export the hard coded strings like "No users" to external file
-- Add more tests to the components and the modules
+- Add more tests to the components and the view model
 - Improve the error handling between the fetch client / service / use-case
 - Add a unique identifier to each user rather than used the key index
 - Add retry after the rate limit time, and display the rate limit time to the user
